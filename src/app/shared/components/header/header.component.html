@@ -1,4 +1,4 @@
-<div class="navbar bg-base-200">
+<div class="navbar mb-8 bg-base-200">
 	<div class="navbar-start">
 		<a routerLink="/" class="btn btn-ghost text-xl">Angular Store</a>
 	</div>
@@ -8,6 +8,19 @@
 		</ul>
 	</div>
 	<div class="navbar-end">
-		<a routerLink="/cart" class="btn btn-accent">Carrito</a>
+		<div class="indicator">
+			@if (cartState.count() > 0) {
+				<span class="badge indicator-item badge-secondary indicator-start">{{
+					cartState.count()
+				}}</span>
+			}
+			<a
+				routerLink="/cart"
+				class="btn btn-accent"
+				routerLinkActive="rounded-box"
+				aria-current="page"
+				>Carrito</a
+			>
+		</div>
 	</div>
 </div>

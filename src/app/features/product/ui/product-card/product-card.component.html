@@ -1,0 +1,24 @@
+<a [routerLink]="['/product', product().id]">
+	<div class="card h-full bg-base-200">
+		<figure class="bg-white p-2">
+			<img
+				[src]="product().image"
+				[alt]="product().title"
+				class="h-60 w-full object-contain"
+			/>
+		</figure>
+		<div class="card-body">
+			<div class="font-thin">{{ product().category }}</div>
+			<h2 class="card-title line-clamp-1">
+				{{ product().title }}
+			</h2>
+			<p class="line-clamp-2">{{ product().description }}</p>
+			<span class="text-2xl font-bold">{{ product().price | currency }}</span>
+			<div class="card-actions z-10 justify-end">
+				<button class="btn btn-primary" (click)="addToCart($event)">
+					Agregar al carrito
+				</button>
+			</div>
+		</div>
+	</div>
+</a>

@@ -7,7 +7,7 @@ export const routes: Routes = [
 		pathMatch: 'full',
 	},
 	{
-		path: 'list',
+		path: '',
 		loadChildren: () =>
 			import('./features/product/pages/product.routes').then(
 				(m) => m.PRODUCT_ROUTES,
@@ -17,5 +17,9 @@ export const routes: Routes = [
 		path: 'cart',
 		loadChildren: () =>
 			import('./features/cart/pages/cart.routes').then((m) => m.CART_ROUTES),
+	},
+	{
+		path: '**',
+		redirectTo: '',
 	},
 ];

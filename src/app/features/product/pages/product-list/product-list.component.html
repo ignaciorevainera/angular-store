@@ -1,1 +1,22 @@
-<p>product-list works!</p>
+@switch (productState.state.status()) {
+	@case ("loading") {
+		<span class="loading loading-spinner loading-lg size-12"></span>
+	}
+	@case ("error") {
+		<div role="alert" class="alert alert-error grid-cols-1">
+			<span>Error!</span>
+		</div>
+	}
+	@case ("success") {
+		<div
+			class="grid auto-rows-auto grid-cols-[repeat(auto-fill,minmax(16rem,1fr))] gap-6"
+		>
+			@for (product of productState.state().products; track product) {
+				<app-product-card [product]="product" (add)="addToCart($event)" />
+			}
+		</div>
+		<div class="mt-4 grid place-content-end">
+			<button class="btn btn-secondary" (click)="changePage()">Ver más</button>
+		</div>
+	}
+}

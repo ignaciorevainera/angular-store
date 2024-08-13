@@ -1,0 +1,50 @@
+<div class="card flex-row">
+	<figure class="w-32 flex-grow rounded-box bg-white">
+		<img
+			[src]="productCartItem().product.image"
+			[alt]="productCartItem().product.title"
+			loading="lazy"
+			class="aspect-square object-contain"
+		/>
+	</figure>
+
+	<div class="card-body gap-4 p-2 sm:p-4 md:flex-row md:items-start md:p-8">
+		<div class="flex flex-grow items-start gap-4 md:flex-col">
+			<a
+				[routerLink]="['/product', productCartItem().product.id]"
+				class="flex-grow text-sm font-semibold md:text-lg"
+				>{{ productCartItem().product.title }}</a
+			>
+			<button
+				class="btn btn-error btn-xs md:btn-sm"
+				(click)="onRemove.emit(productCartItem().product.id)"
+			>
+				Delete
+			</button>
+		</div>
+		<div class="flex items-center justify-between sm:gap-2">
+			<button
+				class="btn btn-xs sm:btn-sm"
+				(click)="onIncrease.emit(productCartItem())"
+			>
+				+
+			</button>
+			<input
+				type="number"
+				[value]="productCartItem().quantity"
+				class="input input-xs text-center sm:input-sm"
+				disabled
+				required
+			/>
+			<button
+				class="btn btn-xs sm:btn-sm"
+				(click)="onDecrease.emit(productCartItem())"
+			>
+				-
+			</button>
+		</div>
+		<span class="text-2xl font-bold">{{
+			productCartItem().product.price | currency
+		}}</span>
+	</div>
+</div>

@@ -4,5 +4,5 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 
 export const PRODUCT_ROUTES: Routes = [
 	{ path: '', component: ProductListComponent },
-	{ path: 'detail/:id', component: ProductDetailComponent },
+	{ path: 'product/:id', component: ProductDetailComponent },
 ];
