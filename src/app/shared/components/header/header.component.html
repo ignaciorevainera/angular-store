@@ -1,8 +1,10 @@
-<div class="navbar mb-8 bg-base-200">
+<div class="navbar mb-8 bg-base-200 py-6">
 	<div class="navbar-start">
-		<a routerLink="/" class="btn btn-ghost text-xl">Angular Store</a>
+		<a routerLink="/list" class="btn btn-ghost text-lg md:text-2xl">
+			<ng-icon name="remixStore2Fill" />Angular Store
+		</a>
 	</div>
-	<div class="navbar-center">
+	<div class="navbar-center hidden md:inline-flex">
 		<ul class="menu menu-horizontal">
 			<li><a routerLink="/list">Productos</a></li>
 		</ul>
@@ -14,13 +16,9 @@
 					cartState.count()
 				}}</span>
 			}
-			<a
-				routerLink="/cart"
-				class="btn btn-accent"
-				routerLinkActive="rounded-box"
-				aria-current="page"
-				>Carrito</a
-			>
+			<a routerLink="/cart" class="btn btn-ghost" aria-current="page">
+				<ng-icon name="remixShoppingCart2Fill" size="20" />
+			</a>
 		</div>
 	</div>
 </div>

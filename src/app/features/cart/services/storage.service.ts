@@ -8,10 +8,10 @@ import { ProductItemCart } from '../../../shared/interfaces/product.interface';
 export class StorageService {
 	loadProducts(): Observable<ProductItemCart[]> {
 		const rawProducts = localStorage.getItem('products');
-    return of(rawProducts ? JSON.parse(rawProducts) : []);
+		return of(rawProducts ? JSON.parse(rawProducts) : []);
 	}
 
 	saveProducts(products: ProductItemCart[]): void {
-    localStorage.setItem('products', JSON.stringify(products));
-  }
+		localStorage.setItem('products', JSON.stringify(products));
+	}
 }

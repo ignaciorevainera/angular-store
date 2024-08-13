@@ -1,10 +1,12 @@
-<div>
+@if (state.products().length === 0) {
+	<div class="flex flex-col items-center justify-center gap-4">
+		<span class="text-2xl">No tienes productos en tu carrito</span>
+		<a routerLink="/" class="btn btn-primary">Ver productos</a>
+	</div>
+} @else {
 	<div class="flex flex-col gap-4">
-		<div>
-			<h2 class="text-2xl font-bold uppercase">Tu carrito de compras</h2>
-		</div>
-
-		<div class="flex flex-col gap-4">
+		<div class="flex flex-grow flex-col gap-4">
+			<h2 class="text-2xl font-bold">Carrito de compras</h2>
 			@for (cartItem of state.products(); track cartItem.product.id) {
 				<app-cart-item
 					[productCartItem]="cartItem"
@@ -15,9 +17,8 @@
 			}
 		</div>
 
-		<!-- totals - start -->
 		<div class="flex flex-col items-end gap-4">
-			<div class="w-full rounded-lg p-4 sm:max-w-xs">
+			<div class="w-full rounded-lg sm:max-w-xs">
 				<div class="space-y-1">
 					<div class="flex justify-between gap-4">
 						<span>Subtotal</span>
@@ -25,8 +26,12 @@
 					</div>
 
 					<div class="flex justify-between gap-4">
-						<span>Shipping</span>
-						<span>$4.99</span>
+						<span>Envío</span>
+						@if (state.price() > 300) {
+							<span class="font-semibold text-success">Gratis</span>
+						} @else {
+							<span class="font-semibold">{{ shippingPrice | currency }}</span>
+						}
 					</div>
 				</div>
 
@@ -35,21 +40,21 @@
 						<span class="text-lg font-bold">Total</span>
 
 						<span class="flex flex-col items-end">
-							<span class="text-lg font-bold">{{
-								state.price() | currency
-							}}</span>
-							<span class="text-sm">including VAT</span>
+							@if (state.price() > 300) {
+								<span class="text-lg font-bold">{{
+									state.price() | currency
+								}}</span>
+							} @else {
+								<span class="text-lg font-bold">{{
+									state.price() + shippingPrice | currency
+								}}</span>
+							}
 						</span>
 					</div>
 				</div>
 			</div>
 
-			<button
-				class="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base"
-			>
-				Check out
-			</button>
+			<button class="btn btn-accent">Confirmar compra</button>
 		</div>
-		<!-- totals - end -->
 	</div>
-</div>
+}
